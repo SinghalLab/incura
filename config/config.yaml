@@ -1,0 +1,18 @@
+organism: 'Mmusculus'
+
+data:
+  url:
+    Hsapiens:
+      genome: 'https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz'
+      annot: 'https://ftp.ensembl.org/pub/release-113/gtf/homo_sapiens/Homo_sapiens.GRCh38.113.gtf.gz'
+      TFs: 'https://resources.aertslab.org/cistarget/tf_lists/allTFs_hg38.txt'
+      knockTF_expr: 'https://zenodo.org/record/7035528/files/knockTF_expr.csv?download=1'
+      knockTF_meta: 'https://zenodo.org/record/7035528/files/knockTF_meta.csv?download=1'
+    Mmusculus:
+      genome: 'ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz'
+      annot: 'ftp://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz'
+      TFs: 'https://resources.aertslab.org/cistarget/tf_lists/allTFs_mm.txt'
+
+software:
+  url:
+    meme: 'https://meme-suite.org/meme/meme-software/5.5.7/meme-5.5.7.tar.gz'
