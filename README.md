@@ -13,8 +13,10 @@ The main version of InCURA is implemented as a user-friendly [web application](h
 This web app version is based on the analysis of a long promoter region: -2000, 500 bp around TSS. Further, it uses a fixed Markov background model for motif scanning derived from the promoter regions of all coding genes. 
 
 
-
-If you would like to manipulate other parameters in the InCURA workflow please clone the GitHub repository. Please note that incura needs snakemake and Apptainer (formerly Singularity) to run, to reproduce the environment. For installation please check the [documentation](https://apptainer.org/documentation/).
+\n
+\n
+\n
+#### If you would like to manipulate other parameters in the InCURA workflow please clone the GitHub repository. Please note that incura needs snakemake and Apptainer (formerly Singularity) to run, to reproduce the environment. For installation please check the [documentation](https://apptainer.org/documentation/).
 
 ### Installation
 Clone repo:
