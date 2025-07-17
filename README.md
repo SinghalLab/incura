@@ -7,15 +7,16 @@ Biologically meaningful interpretation of transcriptomic datasets remains challe
 <img src="data/Fig1_incura_final_v1.jpg" align="middle" width="760" />
 
 ### Usage
-The main version of InCURA is implemented as a user-friendly [web application](https://incura.streamlit.app/). The InCURA app enables easy access to the main fucntionalities: DEG clusterin and idenification of driver TFs.
+The main version of InCURA is implemented as a user-friendly [web application](https://incura.streamlit.app/). The InCURA app enables easy access to the main fucntionalities: DEG clusterin and idenification of driver TFs. We highly recommend using the web app.
 
 **Note:** 
 This web app version is based on the analysis of a long promoter region: -2000, 500 bp around TSS. Further, it uses a fixed Markov background model for motif scanning derived from the promoter regions of all coding genes. 
 
 
-\n
-\n
-\n
+
+
+
+
 #### If you would like to manipulate other parameters in the InCURA workflow please clone the GitHub repository. Please note that incura needs snakemake and Apptainer (formerly Singularity) to run, to reproduce the environment. For installation please check the [documentation](https://apptainer.org/documentation/).
 
 ### Installation
@@ -43,12 +44,17 @@ rule all:
 ```
 
 ### Run 
+#### Motif Scanning
 Run the workflow with snakemake. Change the cores according to your computational resources: 
 
 ```
 snakemake -s workflow/Snakefile --cores 8 --use-singularity
 ```
+#### Motif Processing and Clustering 
+Please run the steps described in the notebook incura_prc.py.ipynb
 
+#### Downstream Analysis
+For signature enrichment analysis please run the steps described in the demo_Tcell_exhaustion.py.ipynb notebook. 
 
 ### Citation
 
