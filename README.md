@@ -33,6 +33,9 @@ mamba activate snakemake
 ### Configuration
 Make sure to change the organism in the config file according to your needs. And if not mouse or human, add a valid download link for a reference genome. 
 
+<img width="953" height="368" alt="Screenshot 2025-09-15 at 13 51 03" src="https://github.com/user-attachments/assets/d0a344e1-ea5c-4787-a653-9f1e6dd49803" />
+
+
 Add your DEGs_myDataset.txt and all_genes.txt to the data directory and modify the Snakefile according to your dataset: 
 
 ```
