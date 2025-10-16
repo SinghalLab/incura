@@ -15,9 +15,9 @@ This web app version is based on the analysis of a long promoter region: -2000, 
 
 
 
-If you would like to manipulate other parameters in the InCURA workflow please clone the GitHub repository. Please note that incura needs snakemake and Apptainer (formerly Singularity) to run, to reproduce the environment. For installation please check the [documentation](https://apptainer.org/documentation/).
+If you would like to manipulate other parameters in the InCURA workflow please clone the GitHub repository. Please note that **InCURA needs snakemake and Apptainer (formerly Singularity)** to run, to reproduce the environment. For installation please check the [documentation](https://apptainer.org/documentation/).
 
-### Installation
+### 1. Installation
 Clone repo:
 ```
 git clone git@github.com:saezlab/incura.git
@@ -30,8 +30,8 @@ mamba create -c conda-forge -c bioconda -n snakemake snakemake
 mamba activate snakemake
 ```
 
-### Configuration
-Make sure to change the organism in the config file according to your needs. And if not mouse or human, add a valid download link for a reference genome. 
+### 2. Configuration
+Make sure to change the organism in the config file according to your needs. If you would like to run InCURA on a custom organism, set the "organism" variable in the config file accoerdingly and add a valid download link for a reference genome. 
 
 <img width="953" height="368" alt="Screenshot 2025-09-15 at 13 51 03" src="https://github.com/user-attachments/assets/1c67afe3-1f57-47c8-8d11-b69ed013132f" />
 
@@ -44,13 +44,37 @@ rule all:
         'data/fimo_myDataset/fimo.tsv'
 ```
 
-### Run 
-#### Motif Scanning
+### 3. Run with default parameters
 Run the workflow with snakemake. Change the cores according to your computational resources: 
 
 ```
 snakemake -s workflow/Snakefile --cores 8 --use-singularity
 ```
+
+### 4. Adjust parameters for custom workflow
+There are several paramters in InCURA that can be changed to adjust the workflow to the specific needs of the user: 
+
+#### Change promoter length 
+To adjuster the length of the promoter region that is scanned for TFBS occurrences, please navigate to the snakemake rule file "workflow/rules/getPromoters.smk":
+```
+rule extractPromoters:
+    input:
+        genome='data/genome.fa',
+        annot='data/coding_genes.gtf'
+    output:
+        db=temp('data/gff.db'),
+        promoters='data/promoters.csv'
+    singularity:
+        'workflow/envs/InCURA.sif'
+    threads: 32
+    shell:
+        """
+        echo "Extracting promoters..."
+        get_promoter create -g {input.annot} && mv gff.db data/
+        get_promoter extract -l 2000 -u 500 -f {input.genome} -g {output.db} -o {output.promoters}
+```
+There the arguments -l (bp upstream of TSS) and -u (bp downstream of TSS) can be changed according to your needs.
+
 #### Motif Processing and Clustering 
 Please run the steps described in the notebook incura_prc.py.ipynb
 
