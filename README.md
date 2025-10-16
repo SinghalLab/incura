@@ -75,6 +75,27 @@ rule extractPromoters:
 ```
 There the arguments -l (bp upstream of TSS) and -u (bp downstream of TSS) can be changed according to your needs.
 
+#### Change FDR 
+If you would like to change the False Discovery Rate (default: 10%) please navigate to "workflow/rules/runFIMO.smk": 
+```
+rule runFIMO:
+    input:
+        background='data/background_{sample}.txt',
+        motifs='data/motifs.meme',
+        promoters='data/promoters_{sample}.fa'
+    output:
+        'data/fimo_{sample}/fimo.tsv'
+    singularity:
+        'workflow/envs/InCURA.sif'
+    threads: 32
+    shell:
+        """
+        fimo --oc data/fimo_{wildcards.sample} --verbosity 2 --thresh 2e-5 --bgfile {input.background} {input.motifs} {input.promoters}
+```
+In there the **--thresh** argument may be adjusted. Please note that the FDR depends on the promoter length that is scanned. A threshold of 2e-5 will give a FDR of 10% for a promoter region of 2500 bp. Please consider checking the [FIMO Documentation](https://gensoft.pasteur.fr/docs/meme/5.1.1/fimo-tutorial.html) for further information on how to find a suitable threshold and account for the multiple testing problem. 
+
+
+
 #### Motif Processing and Clustering 
 Please run the steps described in the notebook incura_prc.py.ipynb
 
