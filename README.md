@@ -119,7 +119,7 @@ In there the **--thresh** argument may be adjusted. Please note that the FDR dep
 
 ### 5. Output
 Once the InCURA run is finished you will find the output in the data directory: 
-``
+```
 fimo_myDataset/
 ├── best_site.narrowPeak
 ├── cisml.xml
