@@ -29,6 +29,22 @@ Then create a new enviroment specific for `Snakemake`:
 mamba create -c conda-forge -c bioconda -n snakemake snakemake
 mamba activate snakemake
 ```
+Once you have cloned the repo, this is what the directory structure will look like: 
+```
+incura/
+├── config
+├── data
+├── LICENCE
+├── README.md
+├── tutorial_check_enriched_signatures.py.ipynb
+├── tutorial_data
+├── tutorial_identify_driver_TFs.py.ipynb
+├── tutorial_InCURA_clustering.py.ipynb
+└── workflow
+```
+
+The "data" folder is both, where the input data should go and where InCURA will produce the intermediate output. 
+
 
 ### 2. Configuration
 Make sure to change the organism in the config file according to your needs. If you would like to run InCURA on a custom organism, set the "organism" variable in the config file accoerdingly and add a valid download link for a reference genome. 
@@ -42,6 +58,13 @@ Add your DEGs_myDataset.txt and all_genes.txt to the data directory and modify t
 rule all:
     input: 
         'data/fimo_myDataset/fimo.tsv'
+```
+Make sure that the extention after "fimo_" matches the extension after "DEGs_" in your input data. This is important for the workflow to link input and output. 
+If you want to process multiple datasets at the same time, just add multiple gene files (e.g DEGs_myFirstDataset.txt, DEGs_myOtherDataset.txt) and add them to the Snakefile separated by a comma: 
+```
+rule all:
+    input: 
+        'data/fimo_myFirstDataset/fimo.tsv', 'data/fimo_myOtherDataset/fimo.tsv'
 ```
 
 ### 3. Run with default parameters
@@ -94,13 +117,27 @@ rule runFIMO:
 ```
 In there the **--thresh** argument may be adjusted. Please note that the FDR depends on the promoter length that is scanned. A threshold of 2e-5 will give a FDR of 10% for a promoter region of 2500 bp. Please consider checking the [FIMO Documentation](https://gensoft.pasteur.fr/docs/meme/5.1.1/fimo-tutorial.html) for further information on how to find a suitable threshold and account for the multiple testing problem. 
 
+### 5. Output
+Once the InCURA run is finished you will find the output in the data directory: 
+``
+fimo_myDataset/
+├── best_site.narrowPeak
+├── cisml.xml
+├── fimo.gff
+├── fimo.html
+├── fimo.tsv
+└── fimo.xml
+```
 
+### 6. Clustering and Downstream Analysis
 
 #### Motif Processing and Clustering 
-Please run the steps described in the notebook incura_prc.py.ipynb
+Please run the steps described in the notebook tutorial_InCURA_clustering.py.ipynb
 
 #### Downstream Analysis
-For signature enrichment analysis please run the steps described in the demo_Tcell_exhaustion.py.ipynb notebook. 
+For signature enrichment analysis please run the steps described in the notebooks:
+* tutorial_check_enriched_signatures.py.ipynb
+* tutorial_identify_driver_TFs.py.ipynb
 
 ### Citation
 
