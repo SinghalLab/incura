@@ -129,6 +129,8 @@ fimo_myDataset/
 └── fimo.xml
 ```
 
+The main output file is the **fimo.tsv** file that serves as the basis of generating InCURA's gene-by-TFBS matrix. If you would like to create the matrix and cluster the genes please follow the tutorial below. 
+
 ### 6. Clustering and Downstream Analysis with Python 
 
 #### Motif Processing and Clustering 
@@ -138,6 +140,8 @@ Please run the steps described in the notebook tutorial_InCURA_clustering.py.ipy
 For signature enrichment analysis please run the steps described in the notebooks:
 * tutorial_check_enriched_signatures.py.ipynb
 * tutorial_identify_driver_TFs.py.ipynb
+
+**Note:** For simplicity we only show the downstream analysis with Python. However, all of the InCURA outputs are saved in easily accessible formats such as tsv and excel an can therefore seamlessly transferred between frameworks.  
 
 ### Citation
 
