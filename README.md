@@ -129,7 +129,7 @@ fimo_myDataset/
 └── fimo.xml
 ```
 
-### 6. Clustering and Downstream Analysis
+### 6. Clustering and Downstream Analysis with Python 
 
 #### Motif Processing and Clustering 
 Please run the steps described in the notebook tutorial_InCURA_clustering.py.ipynb
